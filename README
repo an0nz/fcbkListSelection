@@ -1,16 +1,44 @@
-/*
- fcbkListSelection 1.10
- - Jquery version required: 1.2.x, 1.3.x, 1.4.x
- 
- Changelog:
- - 1.1: added preselected items
- - 1.0: project started
- */
-/* Coded by: emposha <admin@emposha.com> */
-/* Copyright: Emposha.com <http://www.emposha.com/> - Distributed under MIT - Keep this message! */
-/*
- * elem - ul element id or object
- * width - width of ul
- * height - height of each element
- * row - number of items in row
- */
+/* 
+                  fcbkListSelection 1.10 M1
+            Jquery version required: 1.2.x - 1.6.x
+
+  Changelog:
+   - 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more universal plugin.
+   - 1.1: added preselected items
+   - 1.0: project started
+
+  Original by: emposha <admin@emposha.com>
+  M1 Update by: an0nz
+  Copyright: Emposha.com <http://www.emposha.com/> Distributed under MIT - Keep this message!
+
+  OPTIONS : Default
+  width: 450,       - width of ul
+  height: 150,      - height of ul
+  expand: true,     - auto expanding ul height to height specified above
+  rowHeight: 15,    - height of rows
+  rowItems: 3,      - number of items per row
+  showTabs: true,   - set to true to hide tabs
+  allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
+  selectAll: false, - select all 
+  delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
+
+  USAGE
+  
+  // Initialize fcbkListSelection
+  $('#fcbkList').fcbkListSelection({
+        showTabs: false,
+        allBtnTxt: 'ALL',
+        selectAll: true,
+        delimiter: ' '
+  });
+
+  $('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected hidden field values (Delimiter specified in options)
+  $('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
+
+
+  GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all options
+  $.fn.fcbkListSelection.settings.rowHeight = 15;
+  $.fn.fcbkListSelection.settings.rowItems = 2;
+
+  NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
+*/
