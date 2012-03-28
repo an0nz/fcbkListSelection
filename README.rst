@@ -19,28 +19,6 @@ Copyright: `Emposha.com <http://www.emposha.com>`_
 
 License: Distributed under MIT license
 
-Options are:
-
-  width: 450,       - width of ul
-  height: 150,      - height of ul
-  expand: true,     - auto expanding ul height to height specified above
-  rowHeight: 15,    - height of rows
-  rowItems: 3,      - number of items per row
-  showTabs: true,   - set to true to hide tabs
-  allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
-  selectAll: false, - select all 
-  delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
-
-
-  $('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected hidden field values (Delimiter specified in options)
-  $('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
-
-
-  GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all options
-  $.fn.fcbkListSelection.settings.rowHeight = 15;
-  $.fn.fcbkListSelection.settings.rowItems = 2;
-
-  NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
 
 -----------
 HTML Markup
@@ -78,3 +56,31 @@ In <script> tag, put:
         });
     });
 
+
+Options are
+
+  width: 450,       - width of ul
+  height: 150,      - height of ul
+  expand: true,     - auto expanding ul height to height specified above
+  rowHeight: 15,    - height of rows
+  rowItems: 3,      - number of items per row
+  showTabs: true,   - set to true to hide tabs
+  allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
+  selectAll: false, - select all 
+  delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
+
+
+Other Functions
+  $('#fcbkList').fcbkListSelection('GetSelected');
+  - Returns a delimited string of selected hidden field values (Delimiter specified in options)
+
+  $('#fcbkList').fcbkListSelection('SetSelected', vals)
+   - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
+
+
+Global Settings 
+You can adjust global settings by using the following layout, this works for all options
+  $.fn.fcbkListSelection.settings.rowHeight = 15;
+  $.fn.fcbkListSelection.settings.rowItems = 2;
+
+NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
