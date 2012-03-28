@@ -1,6 +1,6 @@
 /* 
-                  fcbkListSelection 1.10 M1
-            Jquery version required: 1.2.x - 1.6.x
+  fcbkListSelection 1.10 M1
+  Jquery version required: 1.2.x - 1.6.x
 
   Changelog:
    - 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more universal plugin.
