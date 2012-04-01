@@ -3,7 +3,8 @@
 =======================
 fcbkListSelection is a fancy item selector, just like the friends selector you can see on Facebook.
 It is built with jQuery javascript framework, with wide range of options.
-You can check out the Demo `here <http://www.emposha.com/demo/fcbklistselection/>`_.
+You can check out the original Demo `here <http://www.emposha.com/demo/fcbklistselection/>`_. 
+There is no online demo of this mod.
 
 - supported Jquery versions: 1.2.x - 1.6.x
  
