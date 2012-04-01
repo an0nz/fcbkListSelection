@@ -3,7 +3,9 @@ fcbkListSelection 1.10 M1
 Jquery version required: 1.2.x, 1.3.x, 1.4.x                      
 
 Changelog:
-- 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more universal plugin.
+- 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more 
+
+universal plugin.
 - 1.1: added preselected items
 - 1.0: project started
 
@@ -18,7 +20,9 @@ expand: true,     - auto expanding ul height to height specified above
 rowHeight: 15,    - height of rows
 rowItems: 3,      - number of items per row
 showTabs: true,   - set to true to hide tabs
-allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
+allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 
+
+'All'
 selectAll: false, - select all 
 delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
 
@@ -32,15 +36,23 @@ selectAll: true,
 delimiter: ' '
 });
 
-$('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected hidden field values (Delimiter specified in options)
-$('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
+$('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected 
+
+hidden field values (Delimiter specified in options)
+$('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field 
+
+values. input: delimited values list (Delimiter specified in options)
 
 
-GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all options
+GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all 
+
+options
 $.fn.fcbkListSelection.settings.rowHeight = 15;
 $.fn.fcbkListSelection.settings.rowItems = 2;
 
-NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
+NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden 
+
+by passing options during the init phase
 */
 
 (function ($) {
@@ -67,7 +79,7 @@ NB: Global setting adjustments must be done before any calls to fcbkListSelectio
 
         var addAll = function (elem, allbtn) {
             if (allbtn) {
-                elem.prepend('<li title="' + allbtn + '">' + allbtn + '</li>');
+                elem.prepend('<li title="' + allbtn + '"><strong>' + allbtn + '</strong></li>');
             }
         }
 
@@ -147,7 +159,9 @@ NB: Global setting adjustments must be done before any calls to fcbkListSelectio
                 var allselected = true;
                 $.each(elem.children("li").children(".fcbklist_item"), function (i, obj) {
                     obj = $(obj);
-                    if (!obj.hasClass("itemselected") && allbtn && obj.parents("li[title='" + allbtn + "']").length == 0) {
+                    if (!obj.hasClass("itemselected") && allbtn && obj.parents("li[title='" + allbtn + 
+
+"']").length == 0) {
                         allselected = false;
                     }
                 });
@@ -259,13 +273,17 @@ NB: Global setting adjustments must be done before any calls to fcbkListSelectio
                                 count++;
                             }
                             obj.click(function () {
-                                if (o.allBtnTxt && obj.parents("li[title='" + o.allBtnTxt + "']").length != 0) {
+                                if (o.allBtnTxt && obj.parents("li[title='" + o.allBtnTxt + "']").length 
+
+!= 0) {
                                     toggleAllSelected(elem, obj.hasClass("itemselected"), o.allBtnTxt);
                                 } else {
                                     addToSelected(elem, obj);
                                     obj.toggleClass("itemselected");
                                     obj.parents("li").toggleClass("liselected");
-                                    if (o.allBtnTxt) { toggleAllButton(elem, obj.hasClass("itemselected"), o.allBtnTxt); }
+                                    if (o.allBtnTxt) { toggleAllButton(elem, 
+
+obj.hasClass("itemselected"), o.allBtnTxt); }
                                 }
                             });
                             obj.mouseover(function () {
@@ -308,11 +326,19 @@ NB: Global setting adjustments must be done before any calls to fcbkListSelectio
                         hide = '';
                         if (!o.showTabs) { hide = ' style="display:none;"'; }
 
-                        var html = '<div id="filters" style="width:' + (parseInt(width, 10) + 2) + 'px;">' +
-                    '<ul class="selections"' + hide + ' id="selections"><li id="view_all" class="view_on">' +
+                        var html = '<div id="filters" style="width:' + (parseInt(width, 10) + 2) + 
+
+'px;">' +
+                    '<ul class="selections"' + hide + ' id="selections"><li id="view_all" 
+
+class="view_on">' +
                     '<a onclick="return false;" href="#">View All</a></li>' +
-                    '<li id="view_selected" class=""><a onclick="return false;" href="#">Selected (<strong id="view_selected_count">0</strong>)</a></li>' +
-                    '<li id="view_unselected" class=""><a onclick="return false;" href="#">Unselected</a></li>' +
+                    '<li id="view_selected" class=""><a onclick="return false;" href="#">Selected 
+
+(<strong id="view_selected_count">0</strong>)</a></li>' +
+                    '<li id="view_unselected" class=""><a onclick="return false;" 
+
+href="#">Unselected</a></li>' +
                     '</ul><div class="clearer"></div></div>';
                         elem.before(html);
                     }
@@ -397,7 +423,9 @@ NB: Global setting adjustments must be done before any calls to fcbkListSelectio
                                 item.toggleClass("itemselected");
                                 obj.toggleClass("liselected");
                                 if (o) {
-                                    if (o.allBtnTxt) { toggleAllButton(elem, item.hasClass("itemselected"), o.allBtnTxt); }
+                                    if (o.allBtnTxt) { toggleAllButton(elem, 
+
+item.hasClass("itemselected"), o.allBtnTxt); }
                                 }
                             }
                         }
