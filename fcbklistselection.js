@@ -1,46 +1,46 @@
 /* 
-                  fcbkListSelection 1.10 M1
-            Jquery version required: 1.2.x - 1.6.x
+fcbkListSelection 1.10 M1
+Jquery version required: 1.2.x, 1.3.x, 1.4.x                      
 
-  Changelog:
-   - 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more universal plugin.
-   - 1.1: added preselected items
-   - 1.0: project started
+Changelog:
+- 1.1 M1 : height/expand/showtabs/allbtn/selectall options added, converted code to work as a more universal plugin.
+- 1.1: added preselected items
+- 1.0: project started
 
-  Original by: emposha <admin@emposha.com>
-  M1 Update by: an0nz
-  Copyright: Emposha.com <http://www.emposha.com/> Distributed under MIT - Keep this message!
+Original by: emposha <admin@emposha.com>
+M1 Update by: an0nz
+Copyright: Emposha.com <http://www.emposha.com/> Distributed under MIT - Keep this message!
 
-  OPTIONS : Default
-  width: 450,       - width of ul
-  height: 150,      - height of ul
-  expand: true,     - auto expanding ul height to height specified above
-  rowHeight: 15,    - height of rows
-  rowItems: 3,      - number of items per row
-  showTabs: true,   - set to true to hide tabs
-  allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
-  selectAll: false, - select all 
-  delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
+OPTIONS : Default
+width: 450,       - width of ul
+height: 150,      - height of ul
+expand: true,     - auto expanding ul height to height specified above
+rowHeight: 15,    - height of rows
+rowItems: 3,      - number of items per row
+showTabs: true,   - set to true to hide tabs
+allBtnTxt: null,  - if specified a button to select all elements will appear with the text entered eg: 'All'
+selectAll: false, - select all 
+delimiter: ','    - the string delimiter used for GetSelected() and SetSelected(vals)
 
-  USAGE
+USAGE
   
-  // Initialize fcbkListSelection
-  $('#fcbkList').fcbkListSelection({
-        showTabs: false,
-        allBtnTxt: 'ALL',
-        selectAll: true,
-        delimiter: ' '
-  });
+// Initialize fcbkListSelection
+$('#fcbkList').fcbkListSelection({
+showTabs: false,
+allBtnTxt: 'ALL',
+selectAll: true,
+delimiter: ' '
+});
 
-  $('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected hidden field values (Delimiter specified in options)
-  $('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
+$('#fcbkList').fcbkListSelection('GetSelected');          - Returns a delimited string of selected hidden field values (Delimiter specified in options)
+$('#fcbkList').fcbkListSelection('SetSelected', vals)     - Selects list items based on hidden field values. input: delimited values list (Delimiter specified in options)
 
 
-  GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all options
-  $.fn.fcbkListSelection.settings.rowHeight = 15;
-  $.fn.fcbkListSelection.settings.rowItems = 2;
+GLOBAL SETTINGS : you can adjust global settings by using the following layout, this works for all options
+$.fn.fcbkListSelection.settings.rowHeight = 15;
+$.fn.fcbkListSelection.settings.rowItems = 2;
 
-  NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
+NB: Global setting adjustments must be done before any calls to fcbkListSelection and can be overridden by passing options during the init phase
 */
 
 (function ($) {
@@ -67,7 +67,7 @@
 
         var addAll = function (elem, allbtn) {
             if (allbtn) {
-                elem.prepend('<li title="' + allbtn + '"><strong>' + allbtn + '</strong></li>');
+                elem.prepend('<li title="' + allbtn + '">' + allbtn + '</li>');
             }
         }
 
@@ -241,6 +241,8 @@
 
                     //bind onmouseover && click event on item
                     var bindEventsOnItems = function (elem) {
+                        var count = 0;
+                        var selcount = 0;
                         $.each(elem.children("li").children(".fcbklist_item"), function (i, obj) {
                             obj = $(obj);
                             if (o.selectAll) {
@@ -251,6 +253,10 @@
                                 addToSelected(elem, obj);
                                 obj.toggleClass("itemselected");
                                 obj.parents("li").toggleClass("liselected");
+                                selcount++;
+                            }
+                            if (obj.parents("li[title='" + o.allBtnTxt + "']").length == 0) {
+                                count++;
                             }
                             obj.click(function () {
                                 if (o.allBtnTxt && obj.parents("li[title='" + o.allBtnTxt + "']").length != 0) {
@@ -269,6 +275,9 @@
                                 $(".itemover").removeClass("itemover");
                             });
                         });
+                        if (!o.selectAll && o.allBtnTxt && count == selcount) {
+                            toggleAllButton(elem, true, o.allBtnTxt);
+                        }
                     }
 
                     var toggleAllSelected = function (elem, state, allbtn) {
